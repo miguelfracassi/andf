@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ANDF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=KoHo:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{background:linear-gradient(90deg,#7d5f36 0%,#a98556 45%,#ebc08a 100%);color:#f6f3ee;font-family:'KoHo',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;text-align:center;overflow-x:hidden}
+main{padding:32px 24px;display:flex;flex-direction:column;align-items:center;max-width:720px}
+.logo{width:min(420px,78vw);height:auto;overflow:visible;opacity:1}
+.logo *{fill:none;stroke:#f3f3f3;stroke-linejoin:round}
+.p{stroke-dasharray:1 1;stroke-dashoffset:1}
+.go .p{stroke-dashoffset:0;transition:stroke-dashoffset var(--d) cubic-bezier(.55,0,.3,1) var(--s)}
+.logo.out{opacity:0;transition:opacity 1s ease}
+.logo.reset,.logo.reset .p{transition:none!important}
+.tag{font-style:italic;font-weight:300;font-size:clamp(1.5rem,4.8vw,2.4rem);margin:30px 0 0;opacity:0;animation:in 1.2s 2.4s ease forwards}
+.soon{font-weight:300;letter-spacing:.14em;text-transform:uppercase;font-size:clamp(.8rem,2.6vw,1rem);margin:34px 0 0;opacity:0;animation:in 1.2s 3.2s ease forwards}
+.dots{display:inline-flex;gap:4px;margin-left:6px}
+.dots i{width:4px;height:4px;border-radius:50%;background:#fff;animation:p 1.4s infinite}
+.dots i:nth-child(2){animation-delay:.2s}.dots i:nth-child(3){animation-delay:.4s}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes p{0%,100%{opacity:.25}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.p{stroke-dashoffset:0!important}.tag,.soon{animation-duration:.01s;animation-delay:0s}}
+</style>
+</head>
+<body>
+<main>
+<svg class="logo" id="logo" viewBox="430 600 1020 780" role="img" aria-label="ANDF">
+<g stroke-width="26" stroke-linecap="round">
+<path class="p" pathLength="1" style="--s:0s;--d:1.7s" d="M472,847 L830,845 L1104,653 L1412,893 H1320 C1240,893 1215,915 1215,985 V1300"/>
+<path class="p" pathLength="1" style="--s:1.2s;--d:.7s" d="M1236,700 V637 H1348 V775"/>
+</g>
+<g stroke-width="28" stroke-linecap="butt">
+<path class="p" pathLength="1" style="--s:1.7s;--d:.4s" d="M1215,966 H1388"/>
+<path class="p" pathLength="1" style="--s:1.9s;--d:.9s" d="M565,1352 L650,1010 Q675,935 700,1010 L790,1352"/>
+<path class="p" pathLength="1" style="--s:2.5s;--d:.3s" d="M600,1195 H750"/>
+<path class="p" pathLength="1" style="--s:2.6s;--d:.9s" d="M795,1352 V940 L980,1345"/>
+<path class="p" pathLength="1" style="--s:3.2s;--d:1s" d="M1004,1345 V935 H1100 C1190,935 1215,1000 1215,1100 V1180 C1215,1290 1180,1345 1100,1345 Z"/>
+</g>
+</svg>
+<p class="tag">Realizando sonhos, criando oportunidades.</p>
+<p class="soon">Em instantes, o site oficial da ANDF<span class="dots"><i></i><i></i><i></i></span></p>
+</main>
+<script>
+(function(){
+var el=document.getElementById('logo');
+function cycle(){
+  el.setAttribute('class','logo reset');
+  void el.getBoundingClientRect();
+  el.setAttribute('class','logo go');
+  setTimeout(function(){el.setAttribute('class','logo go out');},6400);
+  setTimeout(cycle,7800);
+}
+cycle();
+})();
+</script>
+</body>
+</html>
